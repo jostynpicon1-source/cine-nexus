@@ -1,0 +1,340 @@
+
+raw
+Login · HTML
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - CineNexus</title>
+ 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+ 
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url_for('index') }}">
+        <i class="bi bi-film"></i> CineNexus
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('cartelera') }}">Cartelera</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('reservas') }}">Reservas</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('confiteria') }}">Confitería</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('promociones') }}">Promociones</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('socios') }}">Socios</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('contacto') }}">Contacto</a></li>
+          <li class="nav-item" id="nav-login-item">
+            <a class="nav-link btn btn-outline-danger btn-sm text-white ms-2 active" href="{{ url_for('login') }}">
+              <i class="bi bi-person-circle"></i> <span id="nav-user-text">Iniciar Sesión</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+ 
+  <!-- Contenido principal -->
+  <main class="mt-5 pt-5 min-vh-100 d-flex align-items-center bg-dark">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+ 
+        <!-- Columna izquierda: branding -->
+        <div class="col-12 col-lg-5 d-none d-lg-flex flex-column justify-content-center align-items-center text-center pe-5">
+          <i class="bi bi-film text-danger" style="font-size: 5rem;"></i>
+          <h1 class="display-5 fw-bold text-white mt-3">CineNexus</h1>
+          <p class="text-muted lead">Tu cine premium. Inicia sesión para acceder a beneficios exclusivos, reservar entradas y mucho más.</p>
+          <div class="mt-4 text-start">
+            <p class="text-white"><i class="bi bi-check-circle-fill text-danger me-2"></i>Reservas prioritarias</p>
+            <p class="text-white"><i class="bi bi-check-circle-fill text-danger me-2"></i>Descuentos exclusivos</p>
+            <p class="text-white"><i class="bi bi-check-circle-fill text-danger me-2"></i>Acceso a pre-estrenos</p>
+            <p class="text-white"><i class="bi bi-check-circle-fill text-danger me-2"></i>Beneficios VIP en tu cumpleaños</p>
+          </div>
+        </div>
+ 
+        <!-- Columna derecha: formulario -->
+        <div class="col-12 col-md-8 col-lg-5">
+          <div class="card bg-black text-white shadow-lg border-danger">
+            <div class="card-body p-4 p-md-5">
+ 
+              <!-- Tabs Login / Registro -->
+              <ul class="nav nav-tabs border-danger mb-4" id="authTabs">
+                <li class="nav-item">
+                  <button class="nav-link active text-danger border-danger" id="login-tab" data-bs-toggle="tab" data-bs-target="#loginForm">
+                    <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link text-white" id="register-tab" data-bs-toggle="tab" data-bs-target="#registerForm">
+                    <i class="bi bi-person-plus"></i> Registrarse
+                  </button>
+                </li>
+              </ul>
+ 
+              <div class="tab-content">
+ 
+                <!-- ===== FORMULARIO LOGIN ===== -->
+                <div class="tab-pane fade show active" id="loginForm">
+                  <h4 class="text-danger mb-4"><i class="bi bi-person-circle"></i> Bienvenido de nuevo</h4>
+ 
+                  <form id="loginFormEl" novalidate>
+                    <div class="mb-3">
+                      <label for="loginEmail" class="form-label">Correo Electrónico</label>
+                      <div class="input-group">
+                        <span class="input-group-text bg-dark text-danger border-secondary">
+                          <i class="bi bi-envelope"></i>
+                        </span>
+                        <input type="email" class="form-control bg-dark text-white border-secondary" id="loginEmail" placeholder="ejemplo@correo.com" required>
+                        <div class="invalid-feedback">Ingresa un correo válido</div>
+                      </div>
+                    </div>
+ 
+                    <div class="mb-3">
+                      <label for="loginPassword" class="form-label">Contraseña</label>
+                      <div class="input-group">
+                        <span class="input-group-text bg-dark text-danger border-secondary">
+                          <i class="bi bi-lock"></i>
+                        </span>
+                        <input type="password" class="form-control bg-dark text-white border-secondary" id="loginPassword" placeholder="Tu contraseña" required>
+                        <button class="btn btn-outline-secondary" type="button" id="toggleLoginPassword">
+                          <i class="bi bi-eye"></i>
+                        </button>
+                        <div class="invalid-feedback">Ingresa tu contraseña</div>
+                      </div>
+                    </div>
+ 
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                        <label class="form-check-label text-muted" for="rememberMe">Recordarme</label>
+                      </div>
+                      <a href="#" class="text-danger text-decoration-none small">¿Olvidaste tu contraseña?</a>
+                    </div>
+ 
+                    <button type="submit" class="btn btn-danger w-100 btn-lg">
+                      <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                    </button>
+                  </form>
+                </div>
+ 
+                <!-- ===== FORMULARIO REGISTRO ===== -->
+                <div class="tab-pane fade" id="registerForm">
+                  <h4 class="text-danger mb-4"><i class="bi bi-person-plus"></i> Crear cuenta</h4>
+ 
+                  <form id="registerFormEl" novalidate>
+                    <div class="row g-3">
+ 
+                      <div class="col-12 col-md-6">
+                        <label for="regNombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control bg-dark text-white border-secondary" id="regNombre" placeholder="Tu nombre" required>
+                        <div class="invalid-feedback">Ingresa tu nombre</div>
+                      </div>
+ 
+                      <div class="col-12 col-md-6">
+                        <label for="regApellido" class="form-label">Apellido</label>
+                        <input type="text" class="form-control bg-dark text-white border-secondary" id="regApellido" placeholder="Tu apellido" required>
+                        <div class="invalid-feedback">Ingresa tu apellido</div>
+                      </div>
+ 
+                      <div class="col-12">
+                        <label for="regEmail" class="form-label">Correo Electrónico</label>
+                        <div class="input-group">
+                          <span class="input-group-text bg-dark text-danger border-secondary">
+                            <i class="bi bi-envelope"></i>
+                          </span>
+                          <input type="email" class="form-control bg-dark text-white border-secondary" id="regEmail" placeholder="ejemplo@correo.com" required>
+                          <div class="invalid-feedback">Ingresa un correo válido</div>
+                        </div>
+                      </div>
+ 
+                      <div class="col-12">
+                        <label for="regTelefono" class="form-label">Teléfono</label>
+                        <div class="input-group">
+                          <span class="input-group-text bg-dark text-danger border-secondary">
+                            <i class="bi bi-phone"></i>
+                          </span>
+                          <input type="tel" class="form-control bg-dark text-white border-secondary" id="regTelefono" placeholder="999888777" pattern="[0-9]{9}" required>
+                          <div class="invalid-feedback">Ingresa un número de 9 dígitos</div>
+                        </div>
+                      </div>
+ 
+                      <div class="col-12">
+                        <label for="regPassword" class="form-label">Contraseña</label>
+                        <div class="input-group">
+                          <span class="input-group-text bg-dark text-danger border-secondary">
+                            <i class="bi bi-lock"></i>
+                          </span>
+                          <input type="password" class="form-control bg-dark text-white border-secondary" id="regPassword" placeholder="Mínimo 6 caracteres" minlength="6" required>
+                          <button class="btn btn-outline-secondary" type="button" id="toggleRegPassword">
+                            <i class="bi bi-eye"></i>
+                          </button>
+                          <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres</div>
+                        </div>
+                      </div>
+ 
+                      <div class="col-12">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="acceptTerms" required>
+                          <label class="form-check-label text-muted" for="acceptTerms">
+                            Acepto los <a href="#" class="text-danger">términos y condiciones</a>
+                          </label>
+                          <div class="invalid-feedback">Debes aceptar los términos</div>
+                        </div>
+                      </div>
+ 
+                      <div class="col-12">
+                        <button type="submit" class="btn btn-danger w-100 btn-lg">
+                          <i class="bi bi-person-check"></i> Crear Cuenta
+                        </button>
+                      </div>
+ 
+                    </div>
+                  </form>
+                </div>
+ 
+              </div>
+              <!-- fin tab-content -->
+ 
+            </div>
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+  </main>
+ 
+  <!-- Modal éxito login -->
+  <div class="modal fade" id="loginSuccessModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border-success">
+        <div class="modal-header border-success">
+          <h5 class="modal-title text-success">✅ ¡Bienvenido!</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="loginSuccessBody">
+          Sesión iniciada correctamente.
+        </div>
+        <div class="modal-footer border-success">
+          <a href="{{ url_for('index') }}" class="btn btn-success">Ir al Inicio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Modal éxito registro -->
+  <div class="modal fade" id="registerSuccessModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border-danger">
+        <div class="modal-header border-danger">
+          <h5 class="modal-title text-danger">🎬 ¡Cuenta creada!</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          Tu cuenta ha sido creada exitosamente. ¡Bienvenido a CineNexus!
+        </div>
+        <div class="modal-footer border-danger">
+          <a href="{{ url_for('index') }}" class="btn btn-danger">Ir al Inicio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Footer -->
+  <footer class="bg-black text-white py-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <h5 class="text-danger"><i class="bi bi-film"></i> CineNexus</h5>
+          <p>La mejor experiencia cinematográfica premium.</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5 class="text-danger">Enlaces Rápidos</h5>
+          <ul class="list-unstyled">
+            <li><a href="{{ url_for('cartelera') }}" class="text-white text-decoration-none">Cartelera</a></li>
+            <li><a href="{{ url_for('promociones') }}" class="text-white text-decoration-none">Promociones</a></li>
+            <li><a href="{{ url_for('socios') }}" class="text-white text-decoration-none">Socios</a></li>
+            <li><a href="{{ url_for('contacto') }}" class="text-white text-decoration-none">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5 class="text-danger">Síguenos</h5>
+          <div class="social-icons">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-tiktok fs-4"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="bg-danger">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 CineNexus. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+ 
+  <script>
+    // Mostrar/ocultar contraseña login
+    document.getElementById('toggleLoginPassword').addEventListener('click', function () {
+      const input = document.getElementById('loginPassword');
+      const icon = this.querySelector('i');
+      input.type = input.type === 'password' ? 'text' : 'password';
+      icon.classList.toggle('bi-eye');
+      icon.classList.toggle('bi-eye-slash');
+    });
+ 
+    // Mostrar/ocultar contraseña registro
+    document.getElementById('toggleRegPassword').addEventListener('click', function () {
+      const input = document.getElementById('regPassword');
+      const icon = this.querySelector('i');
+      input.type = input.type === 'password' ? 'text' : 'password';
+      icon.classList.toggle('bi-eye');
+      icon.classList.toggle('bi-eye-slash');
+    });
+ 
+    // Submit login
+    document.getElementById('loginFormEl').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!this.checkValidity()) {
+        this.classList.add('was-validated');
+        return;
+      }
+      const email = document.getElementById('loginEmail').value;
+      const nombre = email.split('@')[0];
+      document.getElementById('loginSuccessBody').textContent = `¡Bienvenido, ${nombre}!`;
+      localStorage.setItem('cineNexusUser', nombre);
+      new bootstrap.Modal(document.getElementById('loginSuccessModal')).show();
+    });
+ 
+    // Submit registro
+    document.getElementById('registerFormEl').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!this.checkValidity()) {
+        this.classList.add('was-validated');
+        return;
+      }
+      const nombre = document.getElementById('regNombre').value;
+      localStorage.setItem('cineNexusUser', nombre);
+      new bootstrap.Modal(document.getElementById('registerSuccessModal')).show();
+    });
+ 
+    // Activar tab de registro si viene con ?register=true
+    if (window.location.search.includes('register=true')) {
+      document.getElementById('register-tab').click();
+    }
+  </script>
+ 
+</body>
+</html>

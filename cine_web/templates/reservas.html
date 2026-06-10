@@ -1,0 +1,261 @@
+Reservas · HTML
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservas - CineNexus</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+ 
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url_for('index') }}">
+        <i class="bi bi-film"></i> CineNexus
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('cartelera') }}">Cartelera</a></li>
+          <li class="nav-item"><a class="nav-link active" href="{{ url_for('reservas') }}">Reservas</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('confiteria') }}">Confitería</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('promociones') }}">Promociones</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('socios') }}">Socios</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('contacto') }}">Contacto</a></li>
+          <li class="nav-item" id="nav-login-item">
+            <a class="nav-link btn btn-outline-danger btn-sm text-white ms-2" href="{{ url_for('login') }}">
+              <i class="bi bi-person-circle"></i> <span id="nav-user-text">Iniciar Sesión</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+ 
+  <!-- Header -->
+  <header class="mt-5 pt-5 pb-4 text-center bg-dark">
+    <div class="container">
+      <h1 class="display-4 fw-bold text-danger animate-fadeInUp">
+        <i class="bi bi-ticket-perforated"></i> RESERVAS
+      </h1>
+      <p class="lead">Completa el formulario para reservar tus entradas</p>
+    </div>
+  </header>
+ 
+  <!-- Formulario de Reserva -->
+  <section class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+        <div class="card bg-dark text-white shadow-lg border-danger">
+          <div class="card-body p-4">
+            <h3 class="card-title text-danger mb-4">
+              <i class="bi bi-pencil-square"></i> Datos de la Reserva
+            </h3>
+ 
+            <form id="reservationForm" novalidate>
+              <div class="row g-3">
+ 
+                <!-- ========== DATOS PERSONALES ========== -->
+                <div class="col-12 col-md-6">
+                  <label for="nombre" class="form-label">Nombre *</label>
+                  <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre" required>
+                  <div class="invalid-feedback">Por favor ingresa tu nombre</div>
+                </div>
+ 
+                <div class="col-12 col-md-6">
+                  <label for="apellido" class="form-label">Apellido *</label>
+                  <input type="text" class="form-control" id="apellido" placeholder="Ingresa tu apellido" required>
+                  <div class="invalid-feedback">Por favor ingresa tu apellido</div>
+                </div>
+ 
+                <div class="col-12 col-md-6">
+                  <label for="correo" class="form-label">Correo Electrónico *</label>
+                  <input type="email" class="form-control" id="correo" placeholder="ejemplo@correo.com" required>
+                  <div class="invalid-feedback">Ingresa un correo válido con @</div>
+                </div>
+ 
+                <div class="col-12 col-md-6">
+                  <label for="telefono" class="form-label">Teléfono *</label>
+                  <input type="tel" class="form-control" id="telefono" placeholder="999888777" pattern="[0-9]{9}" required>
+                  <div class="invalid-feedback">Ingresa un número de 9 dígitos</div>
+                </div>
+ 
+                <!-- ========== DATOS DE LA PELÍCULA ========== -->
+                <div class="col-12 col-md-6">
+                  <label for="pelicula" class="form-label">Película *</label>
+                  <select class="form-select" id="pelicula" required>
+                    <option value="">Selecciona una película</option>
+                    <option value="mision-imposible-8">Misión Imposible 8</option>
+                    <option value="el-conjuro-4">El Conjuro 4</option>
+                    <option value="dune-parte-3">Dune: Parte 3</option>
+                    <option value="deadpool-3">Deadpool 3</option>
+                    <option value="spider-verse-3">Spider-Man: Beyond the Spider-Verse</option>
+                    <option value="john-wick-5">John Wick 5</option>
+                  </select>
+                  <div class="invalid-feedback">Selecciona una película</div>
+                </div>
+ 
+                <div class="col-12 col-md-6">
+                  <label for="horario" class="form-label">Horario *</label>
+                  <select class="form-select" id="horario" required>
+                    <option value="">Selecciona un horario</option>
+                    <option value="14:00">14:00</option>
+                    <option value="16:30">16:30</option>
+                    <option value="19:00">19:00</option>
+                    <option value="21:30">21:30</option>
+                  </select>
+                  <div class="invalid-feedback">Selecciona un horario</div>
+                </div>
+ 
+                <div class="col-12 col-md-6">
+                  <label for="formato" class="form-label">Formato *</label>
+                  <select class="form-select" id="formato" required onchange="updatePriceByFormat()">
+                    <option value="">Selecciona un formato</option>
+                    <option value="2d">2D Digital - S/ 25.00</option>
+                    <option value="3d">3D - S/ 35.00</option>
+                    <option value="imax">IMAX - S/ 45.00</option>
+                    <option value="4dx">4DX - S/ 55.00</option>
+                    <option value="vip">VIP Premium - S/ 65.00</option>
+                  </select>
+                  <div class="invalid-feedback">Selecciona un formato</div>
+                </div>
+ 
+                <div class="col-12 col-md-6">
+                  <label for="tipoEntrada" class="form-label">Tipo de Entrada *</label>
+                  <select class="form-select" id="tipoEntrada" required>
+                    <option value="">Selecciona tipo</option>
+                    <option value="general">General</option>
+                    <option value="adulto-mayor">Adulto Mayor (-30%)</option>
+                    <option value="estudiante">Estudiante (-25%)</option>
+                    <option value="nino">Niño (-40%)</option>
+                  </select>
+                  <div class="invalid-feedback">Selecciona un tipo de entrada</div>
+                </div>
+ 
+                <!-- ========== SELECCIÓN DE BUTACAS ========== -->
+                <div class="col-12">
+                  <label class="form-label">Selección de Butacas *</label>
+                  <div class="bg-black p-3 rounded">
+                    <div class="text-center mb-4">
+                      <div class="bg-secondary mx-auto" style="width: 80%; height: 8px; border-radius: 50%;"></div>
+                      <small class="text-muted">PANTALLA</small>
+                    </div>
+                    <div id="seatMap" class="mb-3">
+                      <!-- Se genera dinámicamente con JavaScript -->
+                    </div>
+                    <div class="d-flex gap-3 justify-content-center mt-3">
+                      <div class="d-flex align-items-center">
+                        <div class="bg-secondary me-2" style="width: 20px; height: 20px; border-radius: 3px;"></div>
+                        <small>Disponible</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="bg-danger me-2" style="width: 20px; height: 20px; border-radius: 3px;"></div>
+                        <small>Seleccionada</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="bg-dark border border-secondary me-2" style="width: 20px; height: 20px; border-radius: 3px;"></div>
+                        <small>Ocupada</small>
+                      </div>
+                    </div>
+                    <div id="selectedSeatsDisplay" class="text-center mt-2">
+                      <span class="text-muted">Butacas seleccionadas: </span>
+                      <span id="selectedSeatsList" class="text-danger fw-bold">Ninguna</span>
+                    </div>
+                  </div>
+                </div>
+ 
+              </div>
+ 
+              <!-- Resumen de compra -->
+              <div class="mt-4 p-3 bg-black rounded">
+                <h5 class="text-danger"><i class="bi bi-receipt"></i> Resumen de Compra</h5>
+                <div id="reservationSummary" class="text-muted">
+                  Completa los campos para ver el resumen
+                </div>
+                <hr>
+                <div id="priceDetails" class="small text-muted mb-2"></div>
+                <h4 class="text-end" id="total-display">Total: S/ 0.00</h4>
+              </div>
+ 
+              <!-- Botones -->
+              <div class="d-flex gap-2 justify-content-end mt-4">
+                <button type="reset" class="btn btn-secondary" onclick="resetSeats()">Limpiar</button>
+                <button type="submit" class="btn btn-danger btn-lg">
+                  <i class="bi bi-check-circle"></i> Confirmar Reserva
+                </button>
+              </div>
+            </form>
+ 
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- Modal de Confirmación -->
+  <div class="modal fade" id="confirmationModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border-success">
+        <div class="modal-header border-success">
+          <h5 class="modal-title text-success">✅ ¡Reserva Exitosa!</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="confirmationBody">
+          <!-- Se llena dinámicamente -->
+        </div>
+        <div class="modal-footer border-success">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <a href="{{ url_for('index') }}" class="btn btn-success">Ir al Inicio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Footer -->
+  <footer class="bg-black text-white py-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <h5 class="text-danger"><i class="bi bi-film"></i> CineNexus</h5>
+          <p>La mejor experiencia cinematográfica premium.</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5 class="text-danger">Enlaces Rápidos</h5>
+          <ul class="list-unstyled">
+            <li><a href="{{ url_for('cartelera') }}" class="text-white text-decoration-none">Cartelera</a></li>
+            <li><a href="{{ url_for('promociones') }}" class="text-white text-decoration-none">Promociones</a></li>
+            <li><a href="{{ url_for('socios') }}" class="text-white text-decoration-none">Socios</a></li>
+            <li><a href="{{ url_for('contacto') }}" class="text-white text-decoration-none">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5 class="text-danger">Síguenos</h5>
+          <div class="social-icons">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-tiktok fs-4"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="bg-danger">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 CineNexus. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+ 
+</body>
+</html>

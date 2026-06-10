@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - CineNexus</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <i class="bi bi-film"></i> CineNexus
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="cartelera.html">Cartelera</a></li>
+          <li class="nav-item"><a class="nav-link" href="reservas.html">Reservas</a></li>
+          <li class="nav-item"><a class="nav-link" href="confiteria.html">Confitería</a></li>
+          <li class="nav-item"><a class="nav-link" href="promociones.html">Promociones</a></li>
+          <li class="nav-item"><a class="nav-link" href="socios.html">Socios</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contacto.html">Contacto</a></li>
+          <li class="nav-item" id="nav-login-item">
+            <a class="nav-link btn btn-outline-danger btn-sm text-white ms-2" href="login.html">
+              <i class="bi bi-person-circle"></i> <span id="nav-user-text">Iniciar Sesión</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="mt-5 pt-5 pb-4 text-center bg-dark">
+    <div class="container">
+      <h1 class="display-4 fw-bold text-danger animate-fadeInUp">
+        <i class="bi bi-envelope-fill"></i> CONTACTO
+      </h1>
+      <p class="lead">Estamos aquí para ayudarte. Escríbenos</p>
+    </div>
+  </header>
+
+  <section class="container my-5">
+    <div class="row">
+      <!-- Formulario de Contacto -->
+      <div class="col-12 col-lg-7">
+        <div class="card bg-dark text-white shadow-lg border-danger">
+          <div class="card-body p-4">
+            <h3 class="text-danger mb-4"><i class="bi bi-pencil-square"></i> Envíanos un Mensaje</h3>
+            <form id="contactForm" novalidate>
+              <div class="row g-3">
+                <!-- Nombre -->
+                <div class="col-12 col-md-6">
+                  <label for="contactName" class="form-label">Nombre *</label>
+                  <input type="text" class="form-control" id="contactName" placeholder="Tu nombre" required>
+                  <div class="invalid-feedback">Campo obligatorio</div>
+                </div>
+                
+                <!-- Correo -->
+                <div class="col-12 col-md-6">
+                  <label for="contactEmail" class="form-label">Correo Electrónico *</label>
+                  <input type="email" class="form-control" id="contactEmail" placeholder="tu@correo.com" required>
+                  <div class="invalid-feedback">Ingresa un correo válido</div>
+                </div>
+                
+                <!-- Asunto -->
+                <div class="col-12">
+                  <label for="contactSubject" class="form-label">Asunto *</label>
+                  <select class="form-select" id="contactSubject" required>
+                    <option value="">Selecciona un asunto</option>
+                    <option value="consulta">Consulta General</option>
+                    <option value="reclamo">Reclamo</option>
+                    <option value="sugerencia">Sugerencia</option>
+                    <option value="soporte">Soporte Técnico</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                  <div class="invalid-feedback">Selecciona un asunto</div>
+                </div>
+                
+                <!-- Mensaje -->
+                <div class="col-12">
+                  <label for="contactMessage" class="form-label">Mensaje *</label>
+                  <textarea class="form-control" id="contactMessage" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                  <div class="invalid-feedback">Escribe tu mensaje</div>
+                </div>
+                
+                <!-- Botón -->
+                <div class="col-12">
+                  <button type="submit" class="btn btn-danger w-100">
+                    <i class="bi bi-send"></i> Enviar Mensaje
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Información de Contacto -->
+      <div class="col-12 col-lg-5 mt-4 mt-lg-0">
+        <div class="card bg-dark text-white shadow-sm border-danger h-100">
+          <div class="card-body p-4">
+            <h3 class="text-danger mb-4"><i class="bi bi-info-circle"></i> Información</h3>
+            
+            <div class="mb-4">
+              <h5><i class="bi bi-geo-alt-fill text-danger"></i> Dirección</h5>
+              <p>Av. Cinematográfica 123, Centro Comercial CineNexus, Lima - Perú</p>
+            </div>
+            
+            <div class="mb-4">
+              <h5><i class="bi bi-telephone-fill text-danger"></i> Teléfono</h5>
+              <p>+51 (01) 555-1234</p>
+            </div>
+            
+            <div class="mb-4">
+              <h5><i class="bi bi-envelope-fill text-danger"></i> Email</h5>
+              <p>info@cinenexus.com</p>
+            </div>
+            
+            <div class="mb-4">
+              <h5><i class="bi bi-clock-fill text-danger"></i> Horarios de Atención</h5>
+              <p>Lunes a Viernes: 10:00 AM - 10:00 PM<br>
+              Sábados y Domingos: 11:00 AM - 11:00 PM</p>
+            </div>
+            
+            <div>
+              <h5><i class="bi bi-share-fill text-danger"></i> Redes Sociales</h5>
+              <div class="social-icons mt-2">
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-4"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-tiktok fs-4"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+
+  <!-- Modal de Confirmación -->
+  <div class="modal fade" id="contactSuccessModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border-success">
+        <div class="modal-header border-success">
+          <h5 class="modal-title text-success">✅ ¡Mensaje Enviado!</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Gracias por contactarnos. Te responderemos en un plazo máximo de 24 horas.</p>
+        </div>
+        <div class="modal-footer border-success">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <h5 class="text-danger"><i class="bi bi-film"></i> CineNexus</h5>
+          <p>La mejor experiencia cinematográfica premium.</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5 class="text-danger">Enlaces Rápidos</h5>
+          <ul class="list-unstyled">
+            <li><a href="cartelera.html" class="text-white text-decoration-none">Cartelera</a></li>
+            <li><a href="promociones.html" class="text-white text-decoration-none">Promociones</a></li>
+            <li><a href="socios.html" class="text-white text-decoration-none">Socios</a></li>
+            <li><a href="contacto.html" class="text-white text-decoration-none">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5 class="text-danger">Síguenos</h5>
+          <div class="social-icons">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-tiktok fs-4"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="bg-danger">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 CineNexus. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+
+raw
+Index · HTML
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineNexus - Tu Cine Premium</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+ 
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+    <div class="container">
+ 
+      <!-- Logo del cine -->
+      <a class="navbar-brand" href="{{ url_for('index') }}">
+        <i class="bi bi-film"></i> CineNexus
+      </a>
+ 
+      <!-- Botón hamburguesa para móviles -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+ 
+      <!-- Menú de navegación -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ url_for('index') }}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('cartelera') }}">Cartelera</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('reservas') }}">Reservas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('confiteria') }}">Confitería</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('promociones') }}">Promociones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('socios') }}">Socios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('contacto') }}">Contacto</a>
+          </li>
+          <li class="nav-item" id="nav-login-item">
+            <a class="nav-link btn btn-outline-danger btn-sm text-white ms-2" href="{{ url_for('login') }}">
+              <i class="bi bi-person-circle"></i>
+              <span id="nav-user-text">Iniciar Sesión</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+ 
+    </div>
+  </nav>
+ 
+  <!-- ========== CARRUSEL PRINCIPAL ========== -->
+  <div id="mainCarousel" class="carousel slide carousel-fade mt-5 pt-3" data-bs-ride="carousel" data-bs-interval="4000">
+ 
+    <!-- Indicadores del carrusel -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+    </div>
+ 
+    <!-- Slides del carrusel -->
+    <div class="carousel-inner">
+ 
+      <!-- Slide 1: Avengers -->
+      <div class="carousel-item active">
+        <div class="carousel-img-placeholder" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{{ url_for("static", filename="assets/img/slide1.jpg") }}'); height: 500px; background-size: cover; background-position: center;">
+          <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+            <h2 class="display-4 fw-bold text-danger">AVENGERS: SECRET WARS</h2>
+            <p class="lead">La batalla final ha comenzado. Reserva tus entradas ahora</p>
+            <a href="{{ url_for('reservas') }}" class="btn btn-danger btn-lg mt-3">🎟️ Reservar Ahora</a>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Slide 2: John Wick -->
+      <div class="carousel-item">
+        <div class="carousel-img-placeholder" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{{ url_for("static", filename="assets/img/slide2.jpg") }}'); height: 500px; background-size: cover; background-position: center;">
+          <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+            <h2 class="display-4 fw-bold text-danger">JOHN WICK 5</h2>
+            <p class="lead">La venganza nunca fue tan intensa. Estreno exclusivo</p>
+            <a href="{{ url_for('reservas') }}" class="btn btn-danger btn-lg mt-3">🎟️ Reservar Ahora</a>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Slide 3: Interestelar 2 -->
+      <div class="carousel-item">
+        <div class="carousel-img-placeholder" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{{ url_for("static", filename="assets/img/slide3.jpg") }}'); height: 500px; background-size: cover; background-position: center;">
+          <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+            <h2 class="display-4 fw-bold text-danger">INTERESTELAR 2</h2>
+            <p class="lead">El viaje continúa más allá de las estrellas</p>
+            <a href="{{ url_for('reservas') }}" class="btn btn-danger btn-lg mt-3">🎟️ Reservar Ahora</a>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+ 
+    <!-- Controles del carrusel -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+ 
+  </div>
+ 
+  <!-- ========== SECCIÓN PELÍCULAS DESTACADAS ========== -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4 text-danger fw-bold">
+      <i class="bi bi-star-fill"></i> ESTRENOS DESTACADOS <i class="bi bi-star-fill"></i>
+    </h2>
+ 
+    <div class="row g-4">
+ 
+      <!-- Película 1: Acción -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card movie-card bg-dark text-white shadow-lg">
+          <img src="{{ url_for('static', filename='assets/img/pelicula1.jpg') }}" class="card-img-top" alt="Misión Imposible 8" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title text-danger">Misión Imposible 8</h5>
+            <p class="card-text"><span class="badge bg-danger">Acción</span> | 2h 30min | +13</p>
+            <p class="card-text">Ethan Hunt enfrenta su misión más peligrosa...</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="star-rating" data-movie="mision-imposible-8">
+                <i class="bi bi-star text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+                <i class="bi bi-star-half text-warning"></i>
+                <span class="ms-1">4.5/5</span>
+              </div>
+              <a href="{{ url_for('reservas') }}" class="btn btn-danger btn-sm">Reservar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Película 2: Terror -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card movie-card bg-dark text-white shadow-lg">
+          <img src="{{ url_for('static', filename='assets/img/pelicula2.jpg') }}" class="card-img-top" alt="El Conjuro 4" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title text-danger">El Conjuro 4</h5>
+            <p class="card-text"><span class="badge bg-danger">Terror</span> | 1h 55min | +16</p>
+            <p class="card-text">Los Warren regresan para el caso más aterrador...</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="star-rating" data-movie="el-conjuro-4">
+                <i class="bi bi-star text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+                <span class="ms-1">5/5</span>
+              </div>
+              <a href="{{ url_for('reservas') }}" class="btn btn-danger btn-sm">Reservar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Película 3: Ciencia Ficción -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card movie-card bg-dark text-white shadow-lg">
+          <img src="{{ url_for('static', filename='assets/img/pelicula3.jpg') }}" class="card-img-top" alt="Dune: Parte 3" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title text-danger">Dune: Parte 3</h5>
+            <p class="card-text"><span class="badge bg-danger">Ciencia Ficción</span> | 2h 45min | +13</p>
+            <p class="card-text">Paul Atreides lidera la rebelión final en Arrakis...</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="star-rating" data-movie="dune-parte-3">
+                <i class="bi bi-star text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+                <span class="ms-1">5/5</span>
+              </div>
+              <a href="{{ url_for('reservas') }}" class="btn btn-danger btn-sm">Reservar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+  </section>
+ 
+  <!-- ========== SECCIÓN CATEGORÍAS ========== -->
+  <section class="container my-5 py-4 bg-dark rounded-3 shadow">
+    <h2 class="text-center mb-4 text-danger fw-bold">🎬 CATEGORÍAS</h2>
+    <div class="row g-3 justify-content-center">
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="category-card text-center p-3 bg-black rounded-3 hover-effect">
+          <i class="bi bi-fire text-danger display-4"></i>
+          <h5 class="text-white mt-2">Acción</h5>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="category-card text-center p-3 bg-black rounded-3 hover-effect">
+          <i class="bi bi-emoji-dizzy text-danger display-4"></i>
+          <h5 class="text-white mt-2">Terror</h5>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="category-card text-center p-3 bg-black rounded-3 hover-effect">
+          <i class="bi bi-rocket-takeoff text-danger display-4"></i>
+          <h5 class="text-white mt-2">Ciencia Ficción</h5>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="category-card text-center p-3 bg-black rounded-3 hover-effect">
+          <i class="bi bi-emoji-laughing text-danger display-4"></i>
+          <h5 class="text-white mt-2">Comedia</h5>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="category-card text-center p-3 bg-black rounded-3 hover-effect">
+          <i class="bi bi-controller text-danger display-4"></i>
+          <h5 class="text-white mt-2">Animación</h5>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-black text-white py-4 mt-5">
+    <div class="container">
+      <div class="row">
+ 
+        <div class="col-md-4 mb-3">
+          <h5 class="text-danger"><i class="bi bi-film"></i> CineNexus</h5>
+          <p>La mejor experiencia cinematográfica premium. Vive el cine como nunca antes.</p>
+        </div>
+ 
+        <div class="col-md-4 mb-3">
+          <h5 class="text-danger">Enlaces Rápidos</h5>
+          <ul class="list-unstyled">
+            <li><a href="{{ url_for('cartelera') }}" class="text-white text-decoration-none">Cartelera</a></li>
+            <li><a href="{{ url_for('promociones') }}" class="text-white text-decoration-none">Promociones</a></li>
+            <li><a href="{{ url_for('socios') }}" class="text-white text-decoration-none">Socios</a></li>
+            <li><a href="{{ url_for('contacto') }}" class="text-white text-decoration-none">Contacto</a></li>
+          </ul>
+        </div>
+ 
+        <div class="col-md-4 mb-3">
+          <h5 class="text-danger">Síguenos</h5>
+          <div class="social-icons">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-4"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-4"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-tiktok fs-4"></i></a>
+          </div>
+        </div>
+ 
+      </div>
+      <hr class="bg-danger">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 CineNexus. Todos los derechos reservados. Desarrollado con ❤️</p>
+      </div>
+    </div>
+  </footer>
+ 
+  <!-- ========== MODAL DE BIENVENIDA ========== -->
+  <div class="modal fade" id="welcomeModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border-danger">
+        <div class="modal-header border-danger">
+          <h5 class="modal-title text-danger">🎬 Bienvenido a CineNexus</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>¡Descubre la magia del cine! Explora nuestra cartelera, disfruta de promociones exclusivas y vive una experiencia premium.</p>
+          <p class="text-danger fw-bold">✨ Regístrate como socio y obtén beneficios VIP ✨</p>
+        </div>
+        <div class="modal-footer border-danger">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Explorar</button>
+          <a href="{{ url_for('login') }}" class="btn btn-danger">Registrarme</a>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- JavaScript personalizado -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+ 
+</body>
+</html>
